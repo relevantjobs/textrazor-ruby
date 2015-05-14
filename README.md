@@ -1,7 +1,7 @@
-TextRazor Python SDK
+TextRazor Ruby SDK
 ====================
 
-Python SDK for the TextRazor Text Analytics API. 
+Ruby SDK for the TextRazor Text Analytics API.
 
 TextRazor offers state-of-the-art natural language processing tools through a simple API, allowing you to build semantic technology into your applications in minutes.  
 
@@ -12,27 +12,29 @@ Getting Started
 
 - Get a free API key from [https://www.textrazor.com](https://www.textrazor.com).
 
-- Install the TextRazor Python SDK
+- Install the TextRazor Ruby SDK
 
-	```bash
-	pip install textrazor
+	Using Bundler add in your Gemfile
+
+	```
+	gem 'text_razor', github: 'glampr/textrazor-ruby'
 	```
 
 - Create an instance of the TextRazor object and start analyzing your text.
 
-	```python
-	from textrazor import TextRazor
+	```ruby
+	require 'text_razor'
 
-	client = TextRazor(YOUR_API_KEY_HERE, extractors=["entities"])
+	client = TextRazor(YOUR_API_KEY_HERE, ["entities"])
 	response = client.analyze("Barclays misled shareholders and the public about one of the biggest investments in the bank's history, a BBC Panorama investigation has found.")
 
-	for entity in response.entities():
-		print entity
+	response.entities.each do |entity|
+		puts entity
+	end
 	```
 
 For full API documentation visit [https://www.textrazor.com/documentation_python](https://www.textrazor.com/documentation_python).
-
+to check the Python documentation. The Ruby SDK is identical.
 If you have any questions please get in touch at support@textrazor.com
 
-
-
+This gem will try to follow the version number of the Python SDK.
