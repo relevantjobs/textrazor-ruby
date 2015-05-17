@@ -32,13 +32,13 @@ module TextRazor
     end
 
     def document_id
-      return _response_entity.fetch("id", nil)
+      to_nil _response_entity.fetch("id", nil)
     end
 
     # The disambiguated ID for this entity, or None if this entity could not be disambiguated.
     # This ID is from the localized Wikipedia for this document's language.
     def id
-      _response_entity.fetch("entityId", nil)
+      to_nil _response_entity.fetch("entityId", nil)
     end
     alias_method :localized_id, :id
 
@@ -46,33 +46,33 @@ module TextRazor
     # English ID could be found. None if either the entity could not be linked, or where a
     # language link did not exist.
     def unique_id
-      _response_entity.fetch("entityEnglishId", nil)
+      to_nil _response_entity.fetch("entityEnglishId", nil)
     end
     alias_method :english_id, :unique_id
 
     # Returns the disambiguated Freebase ID for this entity, or None if either
     # this entity could not be disambiguated, or a Freebase link doesn't exist.
     def freebase_id
-      _response_entity.fetch("freebaseId", nil)
+      to_nil _response_entity.fetch("freebaseId", nil)
     end
 
     # Returns a link to Wikipedia for this entity, or None if either this entity
     # could not be disambiguated or a Wikipedia link doesn't exist.
     def wikipedia_link
-      _response_entity.fetch("wikiLink", nil)
+      to_nil _response_entity.fetch("wikiLink", nil)
     end
 
     # Returns the source text string that matched this entity.
     def matched_text
-      _response_entity.fetch("matchedText", nil)
+      to_nil _response_entity.fetch("matchedText", nil)
     end
 
     def starting_position
-      _response_entity.fetch("startingPos", nil)
+      to_nil _response_entity.fetch("startingPos", nil)
     end
 
     def ending_position
-      _response_entity.fetch("endingPos", nil)
+      to_nil _response_entity.fetch("endingPos", nil)
     end
 
     # Returns a list of the token positions in the current sentence that make up this entity.
@@ -94,7 +94,7 @@ module TextRazor
     # 0 to 1, with 1 being the most relevant.  Relevance is determined by the contextual
     # similarity between the entities context and facts in the TextRazor knowledgebase.
     def relevance_score
-      _response_entity.fetch("relevanceScore", nil)
+      to_nil _response_entity.fetch("relevanceScore", nil)
     end
 
     # Returns the confidence that TextRazor is correct that this is a valid entity.
@@ -106,7 +106,7 @@ module TextRazor
     # and other web datasets.  The score ranges from 0.5 to 10, with 10 representing
     # the highest confidence that this is a valid entity.
     def confidence_score
-      _response_entity.fetch("confidenceScore", nil)
+      to_nil _response_entity.fetch("confidenceScore", nil)
     end
 
     # Returns a list of dbpedia types for this entity, or an empty list if there are none.
