@@ -34,6 +34,14 @@ module TextRazor
     def to_h
       Hash[self.class.descr.to_a.map { |m| [m, send(m)] }]
     end
+    
+    def to_nil(x)
+      if (x.respond_to?(:empty?) && x.empty?) || (x.respond_to?(:blank?) && x.blank?)
+        nil
+      else
+        x
+      end
+    end
 
     def inspect
       "#<#{self.class.name} #{to_h.inspect}>"
