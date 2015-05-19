@@ -15,6 +15,7 @@ module TextRazor
     attr_accessor :_noun_phrases
     attr_accessor :sentences
     attr_accessor :_saved_values
+    attr_accessor :error
     self.descr = %w(response_json)
 
 
@@ -76,6 +77,7 @@ module TextRazor
               Sentence.new(sentence_json, link_index)
             end
       end
+      self.error = response_json["error"]
     end
 
     def raw_text

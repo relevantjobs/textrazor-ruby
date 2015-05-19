@@ -237,7 +237,13 @@ module TextRazor
       uri = do_encryption ? SECURE_TEXTRAZOR_ENDPOINT : TEXTRAZOR_ENDPOINT
 
       response_json = clnt.post_content(uri, post_data, request_headers)
-      Response.new(JSON.parse(response_json))
+      response = nil
+      begin
+        response = Response.new(JSON.parse(response_json))
+      rescue => err
+        response = Response.new({"error" => err.message})
+      end
+      response
     end
 
     def _build_request_headers
