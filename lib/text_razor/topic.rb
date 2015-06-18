@@ -43,5 +43,17 @@ module TextRazor
       super + "with label '%s'" % [label]
     end
 
+    def hash
+      label.hash
+    end
+
+    def ==(other_topic)
+      label == other_topic.label
+    end
+
+    def eql?(other_topic)
+      other_topic.is_a?(TextRazor::Topic) && self.hash == other_topic.hash
+    end
+
   end
 end
