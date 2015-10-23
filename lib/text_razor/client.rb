@@ -267,6 +267,7 @@ module TextRazor
     # Returns a :class:`TextRazorResponse` with the parsed data on success.
     # Raises a :class:`TextRazorAnalysisException` on failure.
     def analyze_url(url)
+      return nil if url.to_s.strip.empty?
       post_data = self._build_post_data()
       post_data << ["url", url]
       _do_request(post_data, _build_request_headers)
@@ -277,6 +278,7 @@ module TextRazor
     # Returns a :class:`TextRazorResponse` with the parsed data on success.
     # Raises a :class:`TextRazorAnalysisException` on failure.
     def analyze(text)
+      return nil if text.to_s.strip.empty?
       post_data = self._build_post_data()
       post_data << ["text", text]
       _do_request(post_data, self._build_request_headers)
