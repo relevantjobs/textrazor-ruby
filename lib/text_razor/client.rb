@@ -236,12 +236,13 @@ module TextRazor
     def _do_request(post_data, request_headers)
       uri = do_encryption ? SECURE_TEXTRAZOR_ENDPOINT : TEXTRAZOR_ENDPOINT
 
-      response_json = clnt.post_content(uri, post_data, request_headers)
       response = nil
-      begin
-        response = Response.new(JSON.parse(response_json))
-      rescue => err
-        response = Response.new({"error" => err.message})
+      http_response = clnt.post(uri, body: post_data, header: request_headers)
+      response_json = JSON.parse(http_response.body)
+      if response_json["ok"] == false
+        raise TextRazor::Error::AnalysisException.new(response_json["error"])
+      else
+        response = Response.new(response_json)
       end
       response
     end

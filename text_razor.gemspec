@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name        = 'text_razor'
   s.version     = TextRazor::VERSION
   s.add_runtime_dependency "httpclient"
-  s.date        = '2015-05-01'
+  s.date        = '2016-03-29'
   s.summary     = "TextRazor Ruby client"
   s.description = <<-DESC
 TextRazor
