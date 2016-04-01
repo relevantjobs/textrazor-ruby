@@ -199,7 +199,7 @@ module TextRazor
     end
 
     def _add_optional_param(post_data, param, value)
-      post_data[param] = value if !value.nil?
+      post_data << [param, value] if !value.nil?
     end
 
     def _build_post_data
