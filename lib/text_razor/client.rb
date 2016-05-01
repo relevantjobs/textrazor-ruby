@@ -238,8 +238,10 @@ module TextRazor
 
       response = nil
       http_response = clnt.post(uri, body: post_data, header: request_headers)
-      response_json = JSON.parse(http_response.body)
-      if response_json["ok"] == false
+      response_json = JSON.parse(http_response.body) rescue response_json = nil
+      if response_json.nil?
+        raise "Response is not valid JSON: #{http_response.body}"
+      elsif response_json["ok"] == false
         raise TextRazor::Error::AnalysisException.new(response_json["error"])
       else
         response = Response.new(response_json)
