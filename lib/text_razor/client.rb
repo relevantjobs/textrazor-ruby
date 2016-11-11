@@ -69,7 +69,7 @@ module TextRazor
       self.enrichment_queries = []
       self.dbpedia_type_filters = []
       self.freebase_type_filters = []
-      self.allow_overlap = nil
+      self.allow_overlap = true
       self.clnt = HTTPClient.new
       clnt.transparent_gzip_decompression = true
     end
@@ -240,6 +240,8 @@ module TextRazor
       http_response = clnt.post(uri, body: post_data, header: request_headers)
       response_json = JSON.parse(http_response.body) rescue response_json = nil
       if response_json.nil?
+        warn "Post data:", post_data
+        warn "Response:",  http_response, http_response.body
         raise "Response is not valid JSON: #{http_response.body}"
       elsif response_json["ok"] == false
         raise TextRazor::Error::AnalysisException.new(response_json["error"])
