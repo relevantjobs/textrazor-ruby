@@ -204,7 +204,6 @@ module TextRazor
 
     def _build_post_data
       post_data = [
-        ["apiKey"     , api_key             ],
         ["rules"      , rules               ],
         ["extractors" , extractors.join(",")],
         ["cleanupHTML", cleanup_html        ]
@@ -254,6 +253,7 @@ module TextRazor
     def _build_request_headers
       request_headers = {}
       request_headers['Accept-encoding'] = 'gzip' if do_compression
+      request_headers['x-textrazor-key'] = api_key
       request_headers
     end
 

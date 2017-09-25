@@ -34,7 +34,7 @@ module TextRazor
     def to_h
       Hash[self.class.descr.to_a.map { |m| [m, send(m)] }]
     end
-    
+
     def to_nil(x)
       if (x.respond_to?(:empty?) && x.empty?) || (x.respond_to?(:blank?) && x.blank?)
         nil
@@ -61,8 +61,10 @@ require 'text_razor/entailment'
 require 'text_razor/relation'
 require 'text_razor/relation_param'
 require 'text_razor/custom_annotation'
+require 'text_razor/dictionary'
 require 'text_razor/noun_phrase'
 require 'text_razor/word'
 require 'text_razor/sentence'
 require 'text_razor/response'
 require 'text_razor/client'
+
